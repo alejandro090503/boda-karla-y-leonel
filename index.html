@@ -79,7 +79,7 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
 
 /* ── HERO ── */
 #hero{position:relative;height:100vh;height:100dvh;min-height:620px;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.hero-bg{position:absolute;inset:0;background:url('portada.jpg') center/cover no-repeat;background-color:var(--surface)}
+.hero-bg{position:absolute;inset:0;background:url('foto-cliente-1.jpeg') center 22%/cover no-repeat;background-color:var(--surface)}
 .hero-veil{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(40,45,5,.55) 0%,rgba(40,45,5,.35) 40%,rgba(40,45,5,.45) 75%,rgba(40,45,5,.6) 100%)}
 .hero-frame{position:absolute;inset:20px;border:1px solid rgba(141,134,2,.35);pointer-events:none}
 .hero-frame::before{content:'';position:absolute;inset:6px;border:1px solid rgba(141,134,2,.15)}
@@ -605,10 +605,17 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
         <svg class="loc-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         <div class="loc-txt"><strong>6:00 p.m.</strong> · Parroquia Cristo Rey</div>
       </div>
-      <div style="padding:0 28px 18px">
+      <div class="map-wrap" style="height:220px;margin:0;border-radius:0;border:none;border-top:1px solid var(--border)">
+        <iframe
+          title="Mapa Parroquia Cristo Rey"
+          src="https://www.google.com/maps?q=Parroquia+Cristo+Rey+San+Luis+R%C3%ADo+Colorado+Sonora&z=15&output=embed&hl=es"
+          width="100%" height="100%" style="border:0;display:block" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      </div>
+      <div style="padding:14px 28px 18px">
         <a href="https://maps.app.goo.gl/amvQLmGH886mKogr8?g_st=ic" target="_blank" rel="noopener" class="btn-map" style="margin-top:0">
           <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-          Cómo llegar a la iglesia
+          Abrir en Google Maps
         </a>
       </div>
     </div>
@@ -620,10 +627,17 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
         <svg class="loc-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         <div class="loc-txt"><strong>8:00 p.m.</strong> · Finca los Parra</div>
       </div>
-      <div style="padding:0 28px 22px">
+      <div class="map-wrap" style="height:220px;margin:0;border-radius:0;border:none;border-top:1px solid var(--border)">
+        <iframe
+          title="Mapa Finca los Parra"
+          src="https://www.google.com/maps?q=Finca+Los+Parra+San+Luis+R%C3%ADo+Colorado+Sonora&z=15&output=embed&hl=es"
+          width="100%" height="100%" style="border:0;display:block" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      </div>
+      <div style="padding:14px 28px 22px">
         <a href="https://maps.app.goo.gl/aKKbmbDdfrkyChQ17?g_st=ic" target="_blank" rel="noopener" class="btn-map" style="margin-top:0">
           <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-          Cómo llegar a la recepción
+          Abrir en Google Maps
         </a>
       </div>
     </div>
@@ -708,6 +722,10 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
     <p class="gal-quote rv">Cada imagen, un capítulo de nuestra historia de amor.</p>
     <div class="wheel-scene rv" id="wheel-scene">
       <div class="wheel-ring" id="wheel-ring">
+        <div class="wheel-card"><img src="foto-cliente-1.jpeg" alt="Karla &amp; Leonel" loading="lazy"></div>
+        <div class="wheel-card"><img src="foto-cliente-2.jpeg" alt="Karla &amp; Leonel" loading="lazy"></div>
+        <div class="wheel-card"><img src="foto-cliente-1.jpeg" alt="Karla &amp; Leonel" loading="lazy"></div>
+        <div class="wheel-card"><img src="foto-cliente-2.jpeg" alt="Karla &amp; Leonel" loading="lazy"></div>
         <div class="wheel-card"><img src="foto-cliente-1.jpeg" alt="Karla &amp; Leonel" loading="lazy"></div>
         <div class="wheel-card"><img src="foto-cliente-2.jpeg" alt="Karla &amp; Leonel" loading="lazy"></div>
         <div class="wheel-card"><img src="foto-cliente-1.jpeg" alt="Karla &amp; Leonel" loading="lazy"></div>
@@ -1123,7 +1141,7 @@ function initMain(){
     var ring  = document.getElementById('wheel-ring');
     if(!ring || cards.length === 0) return;
     var n = cards.length;
-    var radius = 220;
+    var radius = 245;
     var rot = 0, vel = 0, isDrag = false;
     var startX = 0, startRot = 0, lastX = 0, rafId = null;
 
