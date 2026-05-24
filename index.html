@@ -460,8 +460,9 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
 .qr-scan-lbl{font-family:'Italiana',serif;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:rgba(201,190,106,.42)}
 
 /* ── FOOTER MONOGRAM ── */
-.footer-monogram-wrap{display:flex;justify-content:center;margin-bottom:28px;position:relative}
-.footer-monogram{width:140px;height:140px;filter:drop-shadow(0 0 32px rgba(141,134,2,.25)) drop-shadow(0 0 8px rgba(201,190,106,.15))}
+.footer-monogram-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:28px;position:relative;gap:14px}
+.footer-monogram{width:260px;height:130px;filter:drop-shadow(0 0 24px rgba(141,134,2,.22)) drop-shadow(0 0 6px rgba(201,190,106,.18))}
+.footer-monogram-tag{font-family:'Italiana',serif;font-size:11px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold-light);opacity:.55;text-align:center}
 
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 </style>
@@ -871,26 +872,73 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
 
   <!-- FOOTER -->
   <footer id="footer">
-    <!-- Premium J&D Monogram -->
+    <!-- Editorial K & L Monogram -->
     <div class="footer-monogram-wrap rv">
-      <svg class="footer-monogram" viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <svg class="footer-monogram" viewBox="0 0 260 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <defs>
           <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#D4C56C"/>
+            <stop offset="0%" stop-color="#E3D58A"/>
             <stop offset="50%" stop-color="#8d8602"/>
             <stop offset="100%" stop-color="#C9BE6A"/>
           </linearGradient>
+          <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#8d8602" stop-opacity=".85"/>
+            <stop offset="100%" stop-color="#B5BB7A" stop-opacity=".7"/>
+          </linearGradient>
         </defs>
-        <circle cx="65" cy="65" r="62" fill="none" stroke="url(#goldGrad)" stroke-width=".7" opacity=".35"/>
-        <circle cx="65" cy="65" r="55" fill="none" stroke="#8d8602" stroke-width=".4" opacity=".18"/>
-        <polygon points="65,1 67,5 65,9 63,5" fill="#C9BE6A" opacity=".5"/>
-        <polygon points="65,121 67,125 65,129 63,125" fill="#C9BE6A" opacity=".5"/>
-        <polygon points="1,65 5,63 9,65 5,67" fill="#C9BE6A" opacity=".3"/>
-        <polygon points="121,65 125,63 129,65 125,67" fill="#C9BE6A" opacity=".3"/>
-        <text x="35" y="86" font-family="'Great Vibes', cursive" font-size="58" fill="url(#goldGrad)" text-anchor="middle" opacity=".92">K</text>
-        <text x="66" y="74" font-family="'Cormorant Garamond', serif" font-style="italic" font-size="17" fill="#8d8602" text-anchor="middle" opacity=".55">&amp;</text>
-        <text x="97" y="86" font-family="'Great Vibes', cursive" font-size="58" fill="url(#goldGrad)" text-anchor="middle" opacity=".92">L</text>
+
+        <!-- Olive branch left -->
+        <g transform="translate(8,72)">
+          <path d="M0 0 Q 35 -22 76 -12" stroke="#8d8602" stroke-width="1" fill="none" opacity=".55" stroke-linecap="round"/>
+          <g fill="url(#leafGrad)">
+            <ellipse cx="14" cy="-6" rx="6" ry="2.3" transform="rotate(-30 14 -6)"/>
+            <ellipse cx="28" cy="-13" rx="6.5" ry="2.4" transform="rotate(-22 28 -13)"/>
+            <ellipse cx="44" cy="-17" rx="7" ry="2.5" transform="rotate(-12 44 -17)"/>
+            <ellipse cx="60" cy="-16" rx="6.5" ry="2.4" transform="rotate(-4 60 -16)"/>
+            <ellipse cx="72" cy="-13" rx="5.5" ry="2.1" transform="rotate(4 72 -13)"/>
+          </g>
+          <g fill="url(#leafGrad)" opacity=".7">
+            <ellipse cx="22" cy="3" rx="5.5" ry="2.1" transform="rotate(20 22 3)"/>
+            <ellipse cx="40" cy="-2" rx="6" ry="2.2" transform="rotate(12 40 -2)"/>
+            <ellipse cx="56" cy="-3" rx="5.5" ry="2.1" transform="rotate(6 56 -3)"/>
+          </g>
+          <circle cx="38" cy="-8" r="1.8" fill="#6f6802" opacity=".55"/>
+          <circle cx="52" cy="-9" r="1.6" fill="#6f6802" opacity=".55"/>
+        </g>
+
+        <!-- Olive branch right (mirrored) -->
+        <g transform="translate(252,72) scale(-1,1)">
+          <path d="M0 0 Q 35 -22 76 -12" stroke="#8d8602" stroke-width="1" fill="none" opacity=".55" stroke-linecap="round"/>
+          <g fill="url(#leafGrad)">
+            <ellipse cx="14" cy="-6" rx="6" ry="2.3" transform="rotate(-30 14 -6)"/>
+            <ellipse cx="28" cy="-13" rx="6.5" ry="2.4" transform="rotate(-22 28 -13)"/>
+            <ellipse cx="44" cy="-17" rx="7" ry="2.5" transform="rotate(-12 44 -17)"/>
+            <ellipse cx="60" cy="-16" rx="6.5" ry="2.4" transform="rotate(-4 60 -16)"/>
+            <ellipse cx="72" cy="-13" rx="5.5" ry="2.1" transform="rotate(4 72 -13)"/>
+          </g>
+          <g fill="url(#leafGrad)" opacity=".7">
+            <ellipse cx="22" cy="3" rx="5.5" ry="2.1" transform="rotate(20 22 3)"/>
+            <ellipse cx="40" cy="-2" rx="6" ry="2.2" transform="rotate(12 40 -2)"/>
+            <ellipse cx="56" cy="-3" rx="5.5" ry="2.1" transform="rotate(6 56 -3)"/>
+          </g>
+          <circle cx="38" cy="-8" r="1.8" fill="#6f6802" opacity=".55"/>
+          <circle cx="52" cy="-9" r="1.6" fill="#6f6802" opacity=".55"/>
+        </g>
+
+        <!-- K (large entrelazada slightly left) -->
+        <text x="106" y="92" font-family="'Great Vibes', cursive" font-size="92" fill="url(#goldGrad)" text-anchor="middle" opacity=".96">K</text>
+
+        <!-- delicate ampersand -->
+        <text x="130" y="74" font-family="'Cormorant Garamond', serif" font-style="italic" font-weight="400" font-size="24" fill="#8d8602" text-anchor="middle" opacity=".62">&amp;</text>
+
+        <!-- L (large entrelazada slightly right) -->
+        <text x="154" y="92" font-family="'Great Vibes', cursive" font-size="92" fill="url(#goldGrad)" text-anchor="middle" opacity=".96">L</text>
+
+        <!-- Hairline under names -->
+        <line x1="98" y1="106" x2="162" y2="106" stroke="url(#goldGrad)" stroke-width=".7" opacity=".45"/>
+        <polygon points="130,103 132,107 130,111 128,107" fill="#C9BE6A" opacity=".7"/>
       </svg>
+      <span class="footer-monogram-tag">Karla &nbsp;·&nbsp; Leonel</span>
     </div>
     <div class="footer-date rv">18 · Julio · 2026</div>
     <div class="footer-hr"></div>
