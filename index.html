@@ -461,19 +461,11 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
 
 /* ── FOOTER MONOGRAM ── */
 .footer-monogram-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:28px;position:relative;gap:14px}
-.footer-monogram{width:300px;height:140px;filter:drop-shadow(0 0 24px rgba(141,134,2,.22)) drop-shadow(0 0 6px rgba(201,190,106,.18))}
-.footer-monogram-tag{font-family:'Italiana',serif;font-size:11px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold-light);opacity:.55;text-align:center}
-@keyframes monoFloatK{0%,100%{transform:translateY(0)}50%{transform:translateY(-3.5px)}}
-@keyframes monoFloatAmp{0%,100%{transform:translateY(0) scale(1);opacity:.62}50%{transform:translateY(-1.6px) scale(1.04);opacity:.78}}
-@keyframes monoFloatL{0%,100%{transform:translateY(0)}50%{transform:translateY(-3.5px)}}
-@keyframes monoFloatBranchL{0%,100%{transform:translate(8px,72px) rotate(0deg)}50%{transform:translate(8px,71px) rotate(-1deg)}}
-@keyframes monoFloatBranchR{0%,100%{transform:translate(292px,72px) scale(-1,1) rotate(0deg)}50%{transform:translate(292px,71px) scale(-1,1) rotate(-1deg)}}
-.fm-k{transform-box:fill-box;transform-origin:center;animation:monoFloatK 4.8s ease-in-out infinite}
-.fm-amp{transform-box:fill-box;transform-origin:center;animation:monoFloatAmp 4.8s ease-in-out infinite .9s}
-.fm-l{transform-box:fill-box;transform-origin:center;animation:monoFloatL 4.8s ease-in-out infinite 1.6s}
-.fm-branch-l{animation:monoFloatBranchL 6s ease-in-out infinite}
-.fm-branch-r{animation:monoFloatBranchR 6s ease-in-out infinite 1.2s}
-@media(prefers-reduced-motion:reduce){.fm-k,.fm-amp,.fm-l,.fm-branch-l,.fm-branch-r{animation:none!important}}
+.footer-monogram-wrap{will-change:transform}
+.footer-monogram{width:300px;height:140px;display:block;will-change:transform;transform:translate3d(0,0,0);animation:fmFloat 5.4s ease-in-out infinite}
+.footer-monogram-tag{font-family:'Italiana',serif;font-size:11px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold-light);opacity:.55;text-align:center;will-change:transform;transform:translate3d(0,0,0);animation:fmFloat 5.4s ease-in-out infinite 1.2s}
+@keyframes fmFloat{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-5px,0)}}
+@media(prefers-reduced-motion:reduce){.footer-monogram,.footer-monogram-tag{animation:none!important}}
 
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 </style>
@@ -899,7 +891,7 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
         </defs>
 
         <!-- Olive branch left -->
-        <g class="fm-branch-l" transform="translate(8,72)">
+        <g transform="translate(8,72)">
           <path d="M0 0 Q 30 -22 64 -12" stroke="#8d8602" stroke-width="1" fill="none" opacity=".55" stroke-linecap="round"/>
           <g fill="url(#leafGrad)">
             <ellipse cx="12" cy="-6" rx="6" ry="2.3" transform="rotate(-30 12 -6)"/>
@@ -918,7 +910,7 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
         </g>
 
         <!-- Olive branch right (mirrored) -->
-        <g class="fm-branch-r" transform="translate(292,72) scale(-1,1)">
+        <g transform="translate(292,72) scale(-1,1)">
           <path d="M0 0 Q 30 -22 64 -12" stroke="#8d8602" stroke-width="1" fill="none" opacity=".55" stroke-linecap="round"/>
           <g fill="url(#leafGrad)">
             <ellipse cx="12" cy="-6" rx="6" ry="2.3" transform="rotate(-30 12 -6)"/>
@@ -937,13 +929,13 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
         </g>
 
         <!-- K -->
-        <text class="fm-k" x="100" y="102" font-family="'Great Vibes', cursive" font-size="80" fill="url(#goldGrad)" text-anchor="middle" opacity=".96">K</text>
+        <text x="100" y="102" font-family="'Great Vibes', cursive" font-size="80" fill="url(#goldGrad)" text-anchor="middle" opacity=".96">K</text>
 
         <!-- delicate ampersand -->
-        <text class="fm-amp" x="150" y="78" font-family="'Cormorant Garamond', serif" font-style="italic" font-weight="400" font-size="22" fill="#8d8602" text-anchor="middle">&amp;</text>
+        <text x="150" y="78" font-family="'Cormorant Garamond', serif" font-style="italic" font-weight="400" font-size="22" fill="#8d8602" text-anchor="middle" opacity=".68">&amp;</text>
 
         <!-- L -->
-        <text class="fm-l" x="200" y="102" font-family="'Great Vibes', cursive" font-size="80" fill="url(#goldGrad)" text-anchor="middle" opacity=".96">L</text>
+        <text x="200" y="102" font-family="'Great Vibes', cursive" font-size="80" fill="url(#goldGrad)" text-anchor="middle" opacity=".96">L</text>
 
         <!-- Hairline under names -->
         <line x1="98" y1="120" x2="202" y2="120" stroke="url(#goldGrad)" stroke-width=".7" opacity=".45"/>
