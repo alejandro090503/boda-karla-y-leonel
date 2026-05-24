@@ -401,6 +401,15 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
 .hotel-star{width:11px;height:11px;fill:var(--gold);opacity:.62}
 .hotel-dist{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:var(--text);opacity:.42;display:block;text-align:center;margin:0 16px 14px;letter-spacing:.02em}
 
+/* ── RSVP FORM ── */
+.rsvp-pases-info{font-family:'Italiana',serif;font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);margin:22px auto 12px;display:inline-block;opacity:0;transition:opacity .35s}
+.rsvp-pases-info.show{opacity:.9}
+.rsvp-form{max-width:340px;margin:6px auto 0;display:flex;flex-direction:column;gap:10px}
+.rsvp-input{width:100%;background:rgba(255,255,255,.65);border:1px solid var(--border);border-radius:4px;padding:13px 16px;font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--text);outline:none;transition:border-color .25s,box-shadow .25s;letter-spacing:.01em}
+.rsvp-input::placeholder{color:#5e5808;opacity:.5;font-style:italic;font-weight:400}
+.rsvp-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(141,134,2,.12)}
+.rsvp-input.err{border-color:#a8442e;box-shadow:0 0 0 3px rgba(168,68,46,.12)}
+
 /* ── RSVP BADGE ── */
 .rsvp-badge{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(141,134,2,.3);border-radius:50px;padding:10px 24px;margin-bottom:22px;background:rgba(141,134,2,.04);position:relative}
 .rsvp-badge::after{content:'';position:absolute;inset:0;border-radius:50px;animation:badgeRipple 3s ease-out infinite}
@@ -461,11 +470,10 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
 
 /* ── FOOTER MONOGRAM ── */
 .footer-monogram-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:28px;position:relative;gap:14px}
-.footer-monogram-wrap{will-change:transform}
-.footer-monogram{width:300px;height:140px;display:block;will-change:transform;transform:translate3d(0,0,0);animation:fmFloat 5.4s ease-in-out infinite}
-.footer-monogram-tag{font-family:'Italiana',serif;font-size:11px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold-light);opacity:.55;text-align:center;will-change:transform;transform:translate3d(0,0,0);animation:fmFloat 5.4s ease-in-out infinite 1.2s}
-@keyframes fmFloat{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-5px,0)}}
-@media(prefers-reduced-motion:reduce){.footer-monogram,.footer-monogram-tag{animation:none!important}}
+/* Footer monogram — isolated paint layer for smooth GSAP levitate (no CSS keyframes, no SVG filter) */
+.footer-monogram-wrap{contain:layout paint;isolation:isolate}
+.footer-monogram{width:300px;height:140px;display:block;will-change:transform;transform:translateZ(0)}
+.footer-monogram-tag{font-family:'Italiana',serif;font-size:11px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold-light);opacity:.55;text-align:center;will-change:transform;transform:translateZ(0)}
 
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 </style>
@@ -809,13 +817,16 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
       Tu presencia hará este día aún más especial.<br>Por favor confírmanos antes del
     </p>
     <span class="rsvp-deadline">Martes, 30 de Junio de 2026</span>
-    <div style="max-width:340px;margin:0 auto">
+
+    <span class="rsvp-pases-info" id="rsvpPasesInfo"></span>
+    <form class="rsvp-form" id="rsvpForm" autocomplete="off" onsubmit="return false"></form>
+
+    <div style="max-width:340px;margin:18px auto 0">
       <button class="btn-wa" id="btnRsvp" type="button">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.05 4.91A9.82 9.82 0 0 0 12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.92 9.92 0 0 0 4.78 1.22h.01c5.45 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.02zM12.04 20.15h-.01a8.23 8.23 0 0 1-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.55-3.7 8.23-8.23 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.16.25-.64.81-.79.97-.15.16-.29.18-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.16.04-.31-.02-.43-.06-.12-.56-1.34-.77-1.84-.2-.49-.41-.42-.56-.43-.14 0-.31-.01-.48-.01s-.43.06-.66.31c-.23.25-.86.84-.86 2.05s.88 2.39 1.01 2.55c.12.16 1.74 2.65 4.21 3.72.59.26 1.04.41 1.4.52.59.19 1.12.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.1-.23-.16-.48-.28z"/></svg>
-        Confirmar por WhatsApp
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+        Confirmar asistencia
       </button>
     </div>
-    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:var(--text);margin-top:18px;opacity:.55">+52 653 107 9309</p>
   </section>
 
   <!-- HOTELES (omitido — cliente no entregó listado) -->
@@ -929,13 +940,13 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
         </g>
 
         <!-- K -->
-        <text x="100" y="102" font-family="'Great Vibes', cursive" font-size="80" fill="url(#goldGrad)" text-anchor="middle" opacity=".96">K</text>
+        <text x="110" y="102" font-family="'Great Vibes', cursive" font-size="84" fill="url(#goldGrad)" text-anchor="middle" opacity=".96">K</text>
 
-        <!-- delicate ampersand -->
-        <text x="150" y="78" font-family="'Cormorant Garamond', serif" font-style="italic" font-weight="400" font-size="22" fill="#8d8602" text-anchor="middle" opacity=".68">&amp;</text>
+        <!-- center dot ornament -->
+        <polygon points="150,86 152,90 150,94 148,90" fill="#C9BE6A" opacity=".55"/>
 
         <!-- L -->
-        <text x="200" y="102" font-family="'Great Vibes', cursive" font-size="80" fill="url(#goldGrad)" text-anchor="middle" opacity=".96">L</text>
+        <text x="190" y="102" font-family="'Great Vibes', cursive" font-size="84" fill="url(#goldGrad)" text-anchor="middle" opacity=".96">L</text>
 
         <!-- Hairline under names -->
         <line x1="98" y1="120" x2="202" y2="120" stroke="url(#goldGrad)" stroke-width=".7" opacity=".45"/>
@@ -1275,16 +1286,70 @@ function initMain(){
     vid.addEventListener('play',  function(){ card.classList.add('playing'); });
   })();
 
-  /* ── RSVP WhatsApp ── */
+  /* ── RSVP — ?pases=N → N inputs → WhatsApp con nombres ── */
   (function initRsvp(){
     const btn = document.getElementById('btnRsvp');
-    if(!btn) return;
+    const form = document.getElementById('rsvpForm');
+    const info = document.getElementById('rsvpPasesInfo');
+    if(!btn || !form) return;
     const phone = '526531079309';
-    const msg = '¡Hola! Con mucho gusto confirmo mi asistencia a la celebración de Karla y Leonel. 🎉\n¡Nos vemos pronto! 💫';
+
+    const params = new URLSearchParams(location.search);
+    let pases = parseInt(params.get('pases') || '1', 10);
+    if(!Number.isFinite(pases) || pases < 1) pases = 1;
+    if(pases > 10) pases = 10;
+
+    if(info){
+      info.textContent = 'Tienes ' + pases + ' ' + (pases === 1 ? 'lugar reservado' : 'lugares reservados');
+      requestAnimationFrame(()=> info.classList.add('show'));
+    }
+
+    for(let i = 0; i < pases; i++){
+      const inp = document.createElement('input');
+      inp.type = 'text';
+      inp.className = 'rsvp-input';
+      inp.placeholder = pases === 1 ? 'Tu nombre completo' : 'Nombre del invitado ' + (i + 1);
+      inp.autocomplete = 'off';
+      inp.spellcheck = false;
+      inp.addEventListener('input', ()=> inp.classList.remove('err'));
+      form.appendChild(inp);
+    }
+
     btn.addEventListener('click', function(){
+      const inputs = form.querySelectorAll('.rsvp-input');
+      const names = [];
+      let firstEmpty = null;
+      inputs.forEach((inp)=>{
+        const v = inp.value.trim();
+        if(!v){
+          inp.classList.add('err');
+          if(!firstEmpty) firstEmpty = inp;
+        } else {
+          names.push(v);
+        }
+      });
+      if(firstEmpty){
+        firstEmpty.focus();
+        return;
+      }
+      const listed = names.map(n => '• ' + n).join('\n');
+      const msg = '¡Hola! Confirmo mi asistencia a la boda de Karla y Leonel. 🎉\n\n' +
+                  (names.length === 1 ? 'Nombre del invitado:\n' : 'Nombres de los invitados (' + names.length + '):\n') +
+                  listed +
+                  '\n\n¡Nos vemos pronto! 💫';
       const url = 'https://wa.me/' + phone + '?text=' + encodeURIComponent(msg);
       window.open(url, '_blank', 'noopener');
     });
+  })();
+
+  /* ── Footer monogram levitate (GSAP, GPU-composited) ── */
+  (function initFooterLevitate(){
+    if(window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+    const mono = document.querySelector('.footer-monogram');
+    const tag  = document.querySelector('.footer-monogram-tag');
+    if(!mono) return;
+    gsap.to(mono, { y: -5, duration: 2.7, ease: 'sine.inOut', yoyo: true, repeat: -1, force3D: true });
+    if(tag) gsap.to(tag, { y: -3, duration: 2.7, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 1.35, force3D: true });
   })();
 }
 
