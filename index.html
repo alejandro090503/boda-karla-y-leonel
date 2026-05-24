@@ -461,8 +461,19 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
 
 /* ── FOOTER MONOGRAM ── */
 .footer-monogram-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:28px;position:relative;gap:14px}
-.footer-monogram{width:260px;height:130px;filter:drop-shadow(0 0 24px rgba(141,134,2,.22)) drop-shadow(0 0 6px rgba(201,190,106,.18))}
+.footer-monogram{width:280px;height:140px;filter:drop-shadow(0 0 24px rgba(141,134,2,.22)) drop-shadow(0 0 6px rgba(201,190,106,.18))}
 .footer-monogram-tag{font-family:'Italiana',serif;font-size:11px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold-light);opacity:.55;text-align:center}
+@keyframes monoFloatK{0%,100%{transform:translateY(0)}50%{transform:translateY(-3.5px)}}
+@keyframes monoFloatAmp{0%,100%{transform:translateY(0) scale(1);opacity:.62}50%{transform:translateY(-1.6px) scale(1.04);opacity:.78}}
+@keyframes monoFloatL{0%,100%{transform:translateY(0)}50%{transform:translateY(-3.5px)}}
+@keyframes monoFloatBranchL{0%,100%{transform:translate(8px,72px) rotate(0deg)}50%{transform:translate(8px,71px) rotate(-1deg)}}
+@keyframes monoFloatBranchR{0%,100%{transform:translate(272px,72px) scale(-1,1) rotate(0deg)}50%{transform:translate(272px,71px) scale(-1,1) rotate(-1deg)}}
+.fm-k{transform-box:fill-box;transform-origin:center;animation:monoFloatK 4.8s ease-in-out infinite}
+.fm-amp{transform-box:fill-box;transform-origin:center;animation:monoFloatAmp 4.8s ease-in-out infinite .9s}
+.fm-l{transform-box:fill-box;transform-origin:center;animation:monoFloatL 4.8s ease-in-out infinite 1.6s}
+.fm-branch-l{animation:monoFloatBranchL 6s ease-in-out infinite}
+.fm-branch-r{animation:monoFloatBranchR 6s ease-in-out infinite 1.2s}
+@media(prefers-reduced-motion:reduce){.fm-k,.fm-amp,.fm-l,.fm-branch-l,.fm-branch-r{animation:none!important}}
 
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 </style>
@@ -874,7 +885,7 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
   <footer id="footer">
     <!-- Editorial K & L Monogram -->
     <div class="footer-monogram-wrap rv">
-      <svg class="footer-monogram" viewBox="0 0 260 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <svg class="footer-monogram" viewBox="0 0 280 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <defs>
           <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stop-color="#E3D58A"/>
@@ -888,55 +899,55 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
         </defs>
 
         <!-- Olive branch left -->
-        <g transform="translate(8,72)">
-          <path d="M0 0 Q 35 -22 76 -12" stroke="#8d8602" stroke-width="1" fill="none" opacity=".55" stroke-linecap="round"/>
+        <g class="fm-branch-l" transform="translate(8,72)">
+          <path d="M0 0 Q 30 -22 64 -12" stroke="#8d8602" stroke-width="1" fill="none" opacity=".55" stroke-linecap="round"/>
           <g fill="url(#leafGrad)">
-            <ellipse cx="14" cy="-6" rx="6" ry="2.3" transform="rotate(-30 14 -6)"/>
-            <ellipse cx="28" cy="-13" rx="6.5" ry="2.4" transform="rotate(-22 28 -13)"/>
-            <ellipse cx="44" cy="-17" rx="7" ry="2.5" transform="rotate(-12 44 -17)"/>
-            <ellipse cx="60" cy="-16" rx="6.5" ry="2.4" transform="rotate(-4 60 -16)"/>
-            <ellipse cx="72" cy="-13" rx="5.5" ry="2.1" transform="rotate(4 72 -13)"/>
+            <ellipse cx="12" cy="-6" rx="6" ry="2.3" transform="rotate(-30 12 -6)"/>
+            <ellipse cx="24" cy="-13" rx="6.5" ry="2.4" transform="rotate(-22 24 -13)"/>
+            <ellipse cx="38" cy="-17" rx="7" ry="2.5" transform="rotate(-12 38 -17)"/>
+            <ellipse cx="52" cy="-16" rx="6.5" ry="2.4" transform="rotate(-4 52 -16)"/>
+            <ellipse cx="62" cy="-13" rx="5.5" ry="2.1" transform="rotate(4 62 -13)"/>
           </g>
           <g fill="url(#leafGrad)" opacity=".7">
-            <ellipse cx="22" cy="3" rx="5.5" ry="2.1" transform="rotate(20 22 3)"/>
-            <ellipse cx="40" cy="-2" rx="6" ry="2.2" transform="rotate(12 40 -2)"/>
-            <ellipse cx="56" cy="-3" rx="5.5" ry="2.1" transform="rotate(6 56 -3)"/>
+            <ellipse cx="20" cy="3" rx="5.5" ry="2.1" transform="rotate(20 20 3)"/>
+            <ellipse cx="34" cy="-2" rx="6" ry="2.2" transform="rotate(12 34 -2)"/>
+            <ellipse cx="48" cy="-3" rx="5.5" ry="2.1" transform="rotate(6 48 -3)"/>
           </g>
-          <circle cx="38" cy="-8" r="1.8" fill="#6f6802" opacity=".55"/>
-          <circle cx="52" cy="-9" r="1.6" fill="#6f6802" opacity=".55"/>
+          <circle cx="32" cy="-8" r="1.8" fill="#6f6802" opacity=".55"/>
+          <circle cx="44" cy="-9" r="1.6" fill="#6f6802" opacity=".55"/>
         </g>
 
         <!-- Olive branch right (mirrored) -->
-        <g transform="translate(252,72) scale(-1,1)">
-          <path d="M0 0 Q 35 -22 76 -12" stroke="#8d8602" stroke-width="1" fill="none" opacity=".55" stroke-linecap="round"/>
+        <g class="fm-branch-r" transform="translate(272,72) scale(-1,1)">
+          <path d="M0 0 Q 30 -22 64 -12" stroke="#8d8602" stroke-width="1" fill="none" opacity=".55" stroke-linecap="round"/>
           <g fill="url(#leafGrad)">
-            <ellipse cx="14" cy="-6" rx="6" ry="2.3" transform="rotate(-30 14 -6)"/>
-            <ellipse cx="28" cy="-13" rx="6.5" ry="2.4" transform="rotate(-22 28 -13)"/>
-            <ellipse cx="44" cy="-17" rx="7" ry="2.5" transform="rotate(-12 44 -17)"/>
-            <ellipse cx="60" cy="-16" rx="6.5" ry="2.4" transform="rotate(-4 60 -16)"/>
-            <ellipse cx="72" cy="-13" rx="5.5" ry="2.1" transform="rotate(4 72 -13)"/>
+            <ellipse cx="12" cy="-6" rx="6" ry="2.3" transform="rotate(-30 12 -6)"/>
+            <ellipse cx="24" cy="-13" rx="6.5" ry="2.4" transform="rotate(-22 24 -13)"/>
+            <ellipse cx="38" cy="-17" rx="7" ry="2.5" transform="rotate(-12 38 -17)"/>
+            <ellipse cx="52" cy="-16" rx="6.5" ry="2.4" transform="rotate(-4 52 -16)"/>
+            <ellipse cx="62" cy="-13" rx="5.5" ry="2.1" transform="rotate(4 62 -13)"/>
           </g>
           <g fill="url(#leafGrad)" opacity=".7">
-            <ellipse cx="22" cy="3" rx="5.5" ry="2.1" transform="rotate(20 22 3)"/>
-            <ellipse cx="40" cy="-2" rx="6" ry="2.2" transform="rotate(12 40 -2)"/>
-            <ellipse cx="56" cy="-3" rx="5.5" ry="2.1" transform="rotate(6 56 -3)"/>
+            <ellipse cx="20" cy="3" rx="5.5" ry="2.1" transform="rotate(20 20 3)"/>
+            <ellipse cx="34" cy="-2" rx="6" ry="2.2" transform="rotate(12 34 -2)"/>
+            <ellipse cx="48" cy="-3" rx="5.5" ry="2.1" transform="rotate(6 48 -3)"/>
           </g>
-          <circle cx="38" cy="-8" r="1.8" fill="#6f6802" opacity=".55"/>
-          <circle cx="52" cy="-9" r="1.6" fill="#6f6802" opacity=".55"/>
+          <circle cx="32" cy="-8" r="1.8" fill="#6f6802" opacity=".55"/>
+          <circle cx="44" cy="-9" r="1.6" fill="#6f6802" opacity=".55"/>
         </g>
 
-        <!-- K (large entrelazada slightly left) -->
-        <text x="106" y="92" font-family="'Great Vibes', cursive" font-size="92" fill="url(#goldGrad)" text-anchor="middle" opacity=".96">K</text>
+        <!-- K -->
+        <text class="fm-k" x="100" y="98" font-family="'Great Vibes', cursive" font-size="88" fill="url(#goldGrad)" text-anchor="middle" opacity=".96">K</text>
 
         <!-- delicate ampersand -->
-        <text x="130" y="74" font-family="'Cormorant Garamond', serif" font-style="italic" font-weight="400" font-size="24" fill="#8d8602" text-anchor="middle" opacity=".62">&amp;</text>
+        <text class="fm-amp" x="140" y="76" font-family="'Cormorant Garamond', serif" font-style="italic" font-weight="400" font-size="22" fill="#8d8602" text-anchor="middle">&amp;</text>
 
-        <!-- L (large entrelazada slightly right) -->
-        <text x="154" y="92" font-family="'Great Vibes', cursive" font-size="92" fill="url(#goldGrad)" text-anchor="middle" opacity=".96">L</text>
+        <!-- L -->
+        <text class="fm-l" x="180" y="98" font-family="'Great Vibes', cursive" font-size="88" fill="url(#goldGrad)" text-anchor="middle" opacity=".96">L</text>
 
         <!-- Hairline under names -->
-        <line x1="98" y1="106" x2="162" y2="106" stroke="url(#goldGrad)" stroke-width=".7" opacity=".45"/>
-        <polygon points="130,103 132,107 130,111 128,107" fill="#C9BE6A" opacity=".7"/>
+        <line x1="98" y1="116" x2="182" y2="116" stroke="url(#goldGrad)" stroke-width=".7" opacity=".45"/>
+        <polygon points="140,113 142,117 140,121 138,117" fill="#C9BE6A" opacity=".7"/>
       </svg>
       <span class="footer-monogram-tag">Karla &nbsp;·&nbsp; Leonel</span>
     </div>
